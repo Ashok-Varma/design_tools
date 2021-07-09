@@ -1,0 +1,32 @@
+# https://dart-lang.github.io/linter/lints/
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    missing_required_param: true
+    unused_import: true
+    parameter_assignments: true
+    always_put_required_named_parameters_first: false
+    always_specify_types: false
+    list_remove_unrelated_type: true
+    iterable_contains_unrelated_type: true
+    avoid_catching_errors: true
+    prefer_void_to_null: true
+
+analyzer:
+  exclude:
+    - build/**
+  errors:
+    missing_required_param: error
+    unused_import: error
+    # method
+    parameter_assignments: error
+    always_put_required_named_parameters_first: warning
+    # types
+    always_specify_types: error
+    list_remove_unrelated_type: warning
+    iterable_contains_unrelated_type: warning
+
+    avoid_catching_errors: error
+    prefer_void_to_null: error
+    todo: warning
