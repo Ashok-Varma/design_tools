@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                         } else {
                           return GridView(
                             padding: const EdgeInsets.only(
-                                top: 0, left: 12, right: 12),
+                                top: 0, left: 14, right: 14),
                             physics: const BouncingScrollPhysics(),
                             scrollDirection: Axis.vertical,
                             children: List<Widget>.generate(
