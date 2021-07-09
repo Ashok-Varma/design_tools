@@ -20,15 +20,35 @@ class GridInterval {
   }) : assert(divisions > 0,
             'The "divisions" property must be greater than zero. If there were no divisions, the grid paper would not paint anything.');
 
-  @override
-  bool operator ==(Object other) =>
-      other is GridInterval &&
-      other.intervals == intervals &&
-      other.decoration == decoration &&
-      other.divisions == divisions;
+  GridInterval copyWith({
+    int? intervals,
+    int? divisions,
+    GridIntervalDecoration? decoration,
+  }) {
+    return GridInterval(
+      intervals ?? this.intervals,
+      divisions: divisions ?? this.divisions,
+      decoration: decoration ?? this.decoration,
+    );
+  }
 
   @override
-  int get hashCode => hashValues(intervals, decoration, divisions);
+  String toString() =>
+      'GridInterval(intervals: $intervals, divisions: $divisions, decoration: $decoration)';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is GridInterval &&
+        other.intervals == intervals &&
+        other.divisions == divisions &&
+        other.decoration == decoration;
+  }
+
+  @override
+  int get hashCode =>
+      intervals.hashCode ^ divisions.hashCode ^ decoration.hashCode;
 }
 
 class GridIntervalDecoration {
@@ -44,17 +64,45 @@ class GridIntervalDecoration {
     this.divisionSeperatorWidth = 0.25,
   });
 
-  @override
-  bool operator ==(Object other) =>
-      other is GridIntervalDecoration &&
-      other.intervalColor == intervalColor &&
-      other.divisionSeperatorColor == divisionSeperatorColor &&
-      other.intervalWidth == intervalWidth &&
-      other.divisionSeperatorWidth == divisionSeperatorWidth;
+  GridIntervalDecoration copyWith({
+    Color? intervalColor,
+    Color? divisionSeperatorColor,
+    double? intervalWidth,
+    double? divisionSeperatorWidth,
+  }) {
+    return GridIntervalDecoration(
+      intervalColor: intervalColor ?? this.intervalColor,
+      divisionSeperatorColor:
+          divisionSeperatorColor ?? this.divisionSeperatorColor,
+      intervalWidth: intervalWidth ?? this.intervalWidth,
+      divisionSeperatorWidth:
+          divisionSeperatorWidth ?? this.divisionSeperatorWidth,
+    );
+  }
 
   @override
-  int get hashCode => hashValues(intervalColor, divisionSeperatorColor,
-      intervalWidth, divisionSeperatorWidth);
+  String toString() {
+    return 'GridIntervalDecoration(intervalColor: $intervalColor, divisionSeperatorColor: $divisionSeperatorColor, intervalWidth: $intervalWidth, divisionSeperatorWidth: $divisionSeperatorWidth)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is GridIntervalDecoration &&
+        other.intervalColor == intervalColor &&
+        other.divisionSeperatorColor == divisionSeperatorColor &&
+        other.intervalWidth == intervalWidth &&
+        other.divisionSeperatorWidth == divisionSeperatorWidth;
+  }
+
+  @override
+  int get hashCode {
+    return intervalColor.hashCode ^
+        divisionSeperatorColor.hashCode ^
+        intervalWidth.hashCode ^
+        divisionSeperatorWidth.hashCode;
+  }
 }
 
 class Keyline {
@@ -66,6 +114,35 @@ class Keyline {
     this.gravity = KeylineGravity.start,
     this.decorator = const KeylineDecorator(),
   });
+
+  Keyline copyWith({
+    double? xPos,
+    KeylineGravity? gravity,
+    KeylineDecorator? decorator,
+  }) {
+    return Keyline(
+      xPos ?? this.xPos,
+      gravity: gravity ?? this.gravity,
+      decorator: decorator ?? this.decorator,
+    );
+  }
+
+  @override
+  String toString() =>
+      'Keyline(xPos: $xPos, gravity: $gravity, decorator: $decorator)';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Keyline &&
+        other.xPos == xPos &&
+        other.gravity == gravity &&
+        other.decorator == decorator;
+  }
+
+  @override
+  int get hashCode => xPos.hashCode ^ gravity.hashCode ^ decorator.hashCode;
 }
 
 enum KeylineGravity { start, end }
@@ -83,4 +160,46 @@ class KeylineDecorator {
     this.marginStartColor = const Color(0x7700BCD4),
     this.marginEndColor = const Color(0x3300BCD4),
   });
+
+  KeylineDecorator copyWith({
+    double? lineWidth,
+    Color? lineColor,
+    double? marginWidth,
+    Color? marginStartColor,
+    Color? marginEndColor,
+  }) {
+    return KeylineDecorator(
+      lineWidth: lineWidth ?? this.lineWidth,
+      lineColor: lineColor ?? this.lineColor,
+      marginWidth: marginWidth ?? this.marginWidth,
+      marginStartColor: marginStartColor ?? this.marginStartColor,
+      marginEndColor: marginEndColor ?? this.marginEndColor,
+    );
+  }
+
+  @override
+  String toString() {
+    return 'KeylineDecorator(lineWidth: $lineWidth, lineColor: $lineColor, marginWidth: $marginWidth, marginStartColor: $marginStartColor, marginEndColor: $marginEndColor)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is KeylineDecorator &&
+        other.lineWidth == lineWidth &&
+        other.lineColor == lineColor &&
+        other.marginWidth == marginWidth &&
+        other.marginStartColor == marginStartColor &&
+        other.marginEndColor == marginEndColor;
+  }
+
+  @override
+  int get hashCode {
+    return lineWidth.hashCode ^
+        lineColor.hashCode ^
+        marginWidth.hashCode ^
+        marginStartColor.hashCode ^
+        marginEndColor.hashCode;
+  }
 }
