@@ -93,7 +93,7 @@ class _CourseInfoScreenState extends State<CourseInfoScreen>
                         children: <Widget>[
                           Padding(
                             padding: const EdgeInsets.only(
-                                top: 32.0, left: 18, right: 16),
+                                top: 32.0, left: 16, right: 16),
                             child: Text(
                               'Web Design\nCourse',
                               textAlign: TextAlign.left,

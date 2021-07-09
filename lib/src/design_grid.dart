@@ -7,13 +7,31 @@ class DesignGridPainter extends CustomPainter {
     required this.horizontalInterval,
   });
 
-  final GridInterval verticalInterval;
-  final GridInterval horizontalInterval;
+  final GuideInterval? verticalInterval;
+  final GuideInterval? horizontalInterval;
 
   @override
   void paint(Canvas canvas, Size size) {
-    final Paint linePaint = Paint();
+    if (verticalInterval != null) {
+      _drawVerticalIntervals(verticalInterval!, canvas, size);
+    }
+    if (horizontalInterval != null) {
+      _drawHorizontalIntervals(horizontalInterval!, canvas, size);
+    }
+  }
 
+  @override
+  bool shouldRepaint(DesignGridPainter oldPainter) {
+    return oldPainter.verticalInterval != verticalInterval ||
+        oldPainter.horizontalInterval != horizontalInterval;
+  }
+
+  @override
+  bool hitTest(Offset position) => false;
+
+  void _drawVerticalIntervals(
+      GuideInterval verticalInterval, Canvas canvas, Size size) {
+    final Paint linePaint = Paint();
     final vDivisions = verticalInterval.divisions;
     const vSubdivisions = 1;
     final vInterval = verticalInterval.intervals;
@@ -34,7 +52,11 @@ class DesignGridPainter extends CustomPainter {
 
       canvas.drawLine(Offset(x, 0.0), Offset(x, size.height), linePaint);
     }
+  }
 
+  void _drawHorizontalIntervals(
+      GuideInterval horizontalInterval, Canvas canvas, Size size) {
+    final Paint linePaint = Paint();
     final hDivisions = horizontalInterval.divisions;
     const hSubdivisions = 1;
     final hInterval = horizontalInterval.intervals;
@@ -55,13 +77,4 @@ class DesignGridPainter extends CustomPainter {
       canvas.drawLine(Offset(0.0, y), Offset(size.width, y), linePaint);
     }
   }
-
-  @override
-  bool shouldRepaint(DesignGridPainter oldPainter) {
-    return oldPainter.verticalInterval != verticalInterval ||
-        oldPainter.horizontalInterval != horizontalInterval;
-  }
-
-  @override
-  bool hitTest(Offset position) => false;
 }

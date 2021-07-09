@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class GridInterval {
+class GuideInterval {
   /// The distance between the primary lines in the grid, in logical pixels.
   final int intervals;
 
@@ -13,19 +13,19 @@ class GridInterval {
   final int divisions;
   final GridIntervalDecoration decoration;
 
-  const GridInterval(
+  const GuideInterval(
     this.intervals, {
     this.divisions = 1,
     this.decoration = const GridIntervalDecoration(),
   }) : assert(divisions > 0,
             'The "divisions" property must be greater than zero. If there were no divisions, the grid paper would not paint anything.');
 
-  GridInterval copyWith({
+  GuideInterval copyWith({
     int? intervals,
     int? divisions,
     GridIntervalDecoration? decoration,
   }) {
-    return GridInterval(
+    return GuideInterval(
       intervals ?? this.intervals,
       divisions: divisions ?? this.divisions,
       decoration: decoration ?? this.decoration,
@@ -40,7 +40,7 @@ class GridInterval {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is GridInterval &&
+    return other is GuideInterval &&
         other.intervals == intervals &&
         other.divisions == divisions &&
         other.decoration == decoration;
@@ -112,7 +112,7 @@ class Keyline {
   const Keyline(
     this.xPos, {
     this.gravity = KeylineGravity.start,
-    this.decorator = const KeylineDecorator(),
+    this.decorator = _materialSpec,
   });
 
   Keyline copyWith({
@@ -147,35 +147,61 @@ class Keyline {
 
 enum KeylineGravity { start, end }
 
+const _materialSpec = KeylineDecorator._(
+    lineWidth: _lineWidth,
+    lineColor: _lineColor,
+    marginWidth: _marginWidth,
+    marginStartColor: _marginStartColor,
+    marginEndColor: _marginEndColor);
+
+const _lineWidth = 1.0;
+const _lineColor = Color(0x77EC018C);
+const _marginWidth = 16.0;
+const _marginStartColor = Color(0x5500BCD4);
+const _marginEndColor = Color(0x1100BCD4);
+
 class KeylineDecorator {
-  final double lineWidth;
-  final Color lineColor;
-  final double marginWidth;
-  final Color marginStartColor;
-  final Color marginEndColor;
-  const KeylineDecorator({
-    this.lineWidth = 1,
-    this.lineColor = const Color(0xFFEC018C),
-    this.marginWidth = 16,
-    this.marginStartColor = const Color(0x7700BCD4),
-    this.marginEndColor = const Color(0x3300BCD4),
+  final double? lineWidth;
+  final Color? lineColor;
+  final double? marginWidth;
+  final Color? marginStartColor;
+  final Color? marginEndColor;
+  const KeylineDecorator._({
+    this.lineWidth,
+    this.lineColor,
+    this.marginWidth,
+    this.marginStartColor,
+    this.marginEndColor,
   });
 
-  KeylineDecorator copyWith({
-    double? lineWidth,
-    Color? lineColor,
-    double? marginWidth,
-    Color? marginStartColor,
-    Color? marginEndColor,
-  }) {
-    return KeylineDecorator(
-      lineWidth: lineWidth ?? this.lineWidth,
-      lineColor: lineColor ?? this.lineColor,
-      marginWidth: marginWidth ?? this.marginWidth,
-      marginStartColor: marginStartColor ?? this.marginStartColor,
-      marginEndColor: marginEndColor ?? this.marginEndColor,
-    );
-  }
+  factory KeylineDecorator.materialSpec() => _materialSpec;
+
+  factory KeylineDecorator.onlyLine(
+          {double lineWidth = _lineWidth, Color lineColor = _lineColor}) =>
+      KeylineDecorator._(lineWidth: lineWidth, lineColor: lineColor);
+
+  factory KeylineDecorator.onlyMargin(
+          {double marginWidth = _marginWidth,
+          Color marginStartColor = _marginStartColor,
+          Color marginEndColor = _marginEndColor}) =>
+      KeylineDecorator._(
+          marginWidth: marginWidth,
+          marginStartColor: marginStartColor,
+          marginEndColor: marginEndColor);
+
+  factory KeylineDecorator.defaultWith({
+    double lineWidth = _lineWidth,
+    Color lineColor = _lineColor,
+    double marginWidth = _marginWidth,
+    Color marginStartColor = _marginStartColor,
+    Color marginEndColor = _marginEndColor,
+  }) =>
+      KeylineDecorator._(
+          lineWidth: lineWidth,
+          lineColor: lineColor,
+          marginWidth: marginWidth,
+          marginStartColor: marginStartColor,
+          marginEndColor: marginEndColor);
 
   @override
   String toString() {

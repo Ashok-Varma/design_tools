@@ -2,6 +2,7 @@ import 'package:best_flutter_ui_templates/design_course/category_list_view.dart'
 import 'package:best_flutter_ui_templates/design_course/course_info_screen.dart';
 import 'package:best_flutter_ui_templates/design_course/popular_course_list_view.dart';
 import 'package:best_flutter_ui_templates/main.dart';
+import 'package:design_tools/design_tools.dart';
 import 'package:flutter/material.dart';
 import 'design_course_app_theme.dart';
 
@@ -131,8 +132,15 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
     Navigator.push<dynamic>(
       context,
       MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => CourseInfoScreen(),
-      ),
+          builder: (BuildContext context) => DesignTools(
+                verticalInterval: null,
+                horizontalInterval: null,
+                keylines: [
+                  Keyline(24),
+                  Keyline(24, gravity: KeylineGravity.end),
+                ],
+                child: CourseInfoScreen(),
+              )),
     );
   }
 

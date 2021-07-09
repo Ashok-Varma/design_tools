@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:best_flutter_ui_templates/hotel_booking/calendar_popup_view.dart';
 import 'package:best_flutter_ui_templates/hotel_booking/hotel_list_view.dart';
 import 'package:best_flutter_ui_templates/hotel_booking/model/hotel_list_data.dart';
+import 'package:design_tools/design_tools.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -449,7 +450,14 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       Navigator.push<dynamic>(
                         context,
                         MaterialPageRoute<dynamic>(
-                            builder: (BuildContext context) => FiltersScreen(),
+                            builder: (BuildContext context) => DesignTools(
+                                  verticalInterval: null,
+                                  keylines: [
+                                    Keyline(16),
+                                    Keyline(16, gravity: KeylineGravity.end),
+                                  ],
+                                  child: FiltersScreen(),
+                                ),
                             fullscreenDialog: true),
                       );
                     },

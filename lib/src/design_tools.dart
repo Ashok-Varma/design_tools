@@ -8,16 +8,15 @@ import 'package:flutter/material.dart';
 class DesignTools extends StatelessWidget {
   final Widget child;
   final bool enabled;
-  //todo rename grid
-  final GridInterval verticalInterval;
-  final GridInterval horizontalInterval;
+  final GuideInterval? verticalInterval;
+  final GuideInterval? horizontalInterval;
   final List<Keyline> keylines;
 
   const DesignTools({
     required this.child,
     this.enabled = true,
-    this.verticalInterval = const GridInterval(16, divisions: 2),
-    this.horizontalInterval = const GridInterval(16, divisions: 2),
+    this.verticalInterval = const GuideInterval(16, divisions: 2),
+    this.horizontalInterval = const GuideInterval(16, divisions: 2),
     this.keylines = const [
       Keyline(16),
       Keyline(72),
