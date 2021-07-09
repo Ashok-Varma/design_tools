@@ -1,3 +1,4 @@
 ## 0.1.0
 
-* TODO: Describe initial release.
+* Support for keylines
+* Support for gridlines

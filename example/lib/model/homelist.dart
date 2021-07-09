@@ -24,21 +24,7 @@ class HomeList {
     ),
     HomeList(
         imagePath: 'assets/hotel/hotel_booking.png',
-        navigateScreen: DesignTools(
-            verticalInterval: null,
-            horizontalInterval: null,
-            keylines: [
-              Keyline(
-                24,
-                decorator: KeylineDecorator.defaultWith(marginWidth: 12),
-              ),
-              Keyline(
-                24,
-                gravity: KeylineGravity.end,
-                decorator: KeylineDecorator.defaultWith(marginWidth: 12),
-              ),
-            ],
-            child: HotelHomeScreen())),
+        navigateScreen:  HotelHomeScreen()),
     HomeList(
       imagePath: 'assets/fitness_app/fitness_app.png',
       navigateScreen: DesignTools(

@@ -1,11 +1,11 @@
 name: design_tools
-description: A new Flutter package project.
-version: 0.0.1
-homepage:
+description: Package brings the design tools to your flutter app. It supports grid-lines and key-lines
+version: 0.1.0
+homepage: https://github.com/Ashok-Varma/design_tools
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-  flutter: ^2.2.0
+  flutter: ">=2.2.0"
 
 dependencies:
   flutter:

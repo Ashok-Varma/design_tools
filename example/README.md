@@ -1,15 +1,4 @@
-# design_tools
+# design_tools sample
 
-A new Flutter package project.
-
-## Getting Started
-Example is a fork from [Best-Flutter-UI-Templates](https://github.com/mitesh77/Best-Flutter-UI-Templates)
-
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This example is a fork from [Best-Flutter-UI-Templates](https://github.com/mitesh77/Best-Flutter-UI-Templates)
+Can to used to try or test [design_tools](https://github.com/Ashok-Varma/design_tools)
