@@ -39,16 +39,16 @@ class DesignGridPainter extends CustomPainter {
 
     for (double x = 0.0; x <= size.width; x += vInterval / vAllDivisions) {
       linePaint.strokeWidth = (x % vInterval == 0.0)
-          ? verticalInterval.decoration.intervalWidth
+          ? verticalInterval.intervalDecorator.width
           : (x % (vInterval / vSubdivisions) == 0.0)
-              ? verticalInterval.decoration.divisionSeperatorWidth
-              : verticalInterval.decoration.divisionSeperatorWidth;
+              ? verticalInterval.divisionDecorator.width
+              : verticalInterval.divisionDecorator.width;
 
       linePaint.color = (x % vInterval == 0.0)
-          ? verticalInterval.decoration.intervalColor
+          ? verticalInterval.intervalDecorator.color
           : (x % (vInterval / vSubdivisions) == 0.0)
-              ? verticalInterval.decoration.divisionSeperatorColor
-              : verticalInterval.decoration.divisionSeperatorColor;
+              ? verticalInterval.divisionDecorator.color
+              : verticalInterval.divisionDecorator.color;
 
       canvas.drawLine(Offset(x, 0.0), Offset(x, size.height), linePaint);
     }
@@ -64,15 +64,15 @@ class DesignGridPainter extends CustomPainter {
 
     for (double y = 0.0; y <= size.height; y += hInterval / hAllDivisions) {
       linePaint.strokeWidth = (y % hInterval == 0.0)
-          ? horizontalInterval.decoration.intervalWidth
+          ? horizontalInterval.intervalDecorator.width
           : (y % (hInterval / hSubdivisions) == 0.0)
-              ? horizontalInterval.decoration.divisionSeperatorWidth
-              : horizontalInterval.decoration.divisionSeperatorWidth;
+              ? horizontalInterval.divisionDecorator.width
+              : horizontalInterval.divisionDecorator.width;
       linePaint.color = (y % hInterval == 0.0)
-          ? horizontalInterval.decoration.intervalColor
+          ? horizontalInterval.intervalDecorator.color
           : (y % (hInterval / hSubdivisions) == 0.0)
-              ? horizontalInterval.decoration.divisionSeperatorColor
-              : horizontalInterval.decoration.divisionSeperatorColor;
+              ? horizontalInterval.divisionDecorator.color
+              : horizontalInterval.divisionDecorator.color;
 
       canvas.drawLine(Offset(0.0, y), Offset(size.width, y), linePaint);
     }

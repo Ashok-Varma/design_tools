@@ -53,10 +53,10 @@ class HotelListView extends StatelessWidget {
                       verticalInterval: null,
                       horizontalInterval: null,
                       keylines: [
-                        Keyline(16, decorator: KeylineDecorator.onlyLine()),
+                        Keyline(16, decorator: KeylineDecorator(marginDecorator: null)),
                         Keyline(16,
                             gravity: KeylineGravity.end,
-                            decorator: KeylineDecorator.onlyLine()),
+                            decorator: KeylineDecorator(marginDecorator: null)),
                       ],
                       child: Stack(
                         children: <Widget>[

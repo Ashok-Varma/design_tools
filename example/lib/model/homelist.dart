@@ -24,7 +24,7 @@ class HomeList {
     ),
     HomeList(
         imagePath: 'assets/hotel/hotel_booking.png',
-        navigateScreen:  HotelHomeScreen()),
+        navigateScreen: HotelHomeScreen()),
     HomeList(
       imagePath: 'assets/fitness_app/fitness_app.png',
       navigateScreen: DesignTools(
@@ -33,12 +33,20 @@ class HomeList {
           keylines: [
             Keyline(
               24,
-              decorator: KeylineDecorator.defaultWith(marginWidth: 12),
+              decorator: KeylineDecorator(
+                  marginDecorator: BlockLineDecorator(
+                      startColor: Color(0x5500BCD4),
+                      endColor: Color(0x1100BCD4),
+                      width: 12)),
             ),
             Keyline(
               24,
               gravity: KeylineGravity.end,
-              decorator: KeylineDecorator.defaultWith(marginWidth: 12),
+              decorator: KeylineDecorator(
+                  marginDecorator: BlockLineDecorator(
+                      startColor: Color(0x5500BCD4),
+                      endColor: Color(0x1100BCD4),
+                      width: 12)),
             ),
           ],
           child: FitnessAppHomeScreen()),

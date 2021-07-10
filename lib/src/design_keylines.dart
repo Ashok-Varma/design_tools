@@ -19,38 +19,36 @@ class DesignKeylinePainter extends CustomPainter {
           : size.width - keyline.xPos;
 
       // draw margin
-      if (keyline.decorator.marginWidth != null) {
-        final w = keyline.decorator.marginWidth!;
+      final marginDecorator = keyline.decorator.marginDecorator;
+      if (marginDecorator != null) {
+        final w = marginDecorator.width;
         final marginLine =
             keyline.gravity == KeylineGravity.start ? x - w / 2 : x + w / 2;
         marginPaint.strokeWidth = w;
-        marginPaint.shader = _getShader(keyline, x, w, size);
+        marginPaint.shader =
+            _getShader(keyline.gravity, marginDecorator, x, w, size);
         canvas.drawLine(Offset(marginLine, 0.0),
             Offset(marginLine, size.height), marginPaint);
       }
 
-      if (keyline.decorator.lineWidth != null) {
-        linePaint.strokeWidth = keyline.decorator.lineWidth!;
-        linePaint.color = keyline.decorator.lineColor!;
+      final lineDecorator = keyline.decorator.lineDecorator;
+      if (lineDecorator != null) {
+        linePaint.strokeWidth = lineDecorator.width;
+        linePaint.color = lineDecorator.color;
         canvas.drawLine(Offset(x, 0.0), Offset(x, size.height), linePaint);
       }
     }
   }
 
-  Shader _getShader(Keyline keyline, double x, double w, Size size) {
-    final marginRect = keyline.gravity == KeylineGravity.start
+  Shader _getShader(KeylineGravity gravity, BlockLineDecorator decorator,
+      double x, double w, Size size) {
+    final marginRect = gravity == KeylineGravity.start
         ? Rect.fromLTRB(x - w, 0, x, size.height)
         : Rect.fromLTRB(x, 0, x + w, size.height);
     return LinearGradient(
-      colors: keyline.gravity == KeylineGravity.start
-          ? [
-              keyline.decorator.marginEndColor!,
-              keyline.decorator.marginStartColor!
-            ]
-          : [
-              keyline.decorator.marginStartColor!,
-              keyline.decorator.marginEndColor!
-            ],
+      colors: gravity == KeylineGravity.start
+          ? [decorator.endColor, decorator.startColor]
+          : [decorator.startColor, decorator.endColor],
     ).createShader(marginRect);
   }
 
